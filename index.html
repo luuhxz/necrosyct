@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>necrosyct | NaNNo</title>
     <style>
-        /* Paleta inspirada na imagem: Vermelho Paixão, Preto e Tons de Cinza */
         :root {
             --deep-red: #8b0000;
             --bright-red: #d10000;
             --bg-dark: #0a0a0a;
             --text-gray: #b0b0b0;
+            --spotify-green: #1DB954;
         }
 
         body {
@@ -42,7 +42,7 @@
             text-transform: lowercase;
         }
 
-        /* Seção NaNNo (Destaque) */
+        /* Destaque NaNNo */
         .main-release {
             margin-top: 30px;
         }
@@ -52,7 +52,6 @@
             max-width: 350px;
             border: 2px solid var(--deep-red);
             filter: saturate(1.2) contrast(1.1);
-            transition: 0.5s;
         }
 
         .countdown-container {
@@ -63,33 +62,42 @@
             text-shadow: 0 0 10px rgba(209, 0, 0, 0.5);
         }
 
+        /* Botão Geral */
         .btn-spotify {
             display: inline-block;
-            background: var(--bright-red);
             color: #fff;
-            padding: 15px 35px;
+            padding: 12px 30px;
             text-decoration: none;
             font-weight: bold;
-            border-radius: 2px;
+            border-radius: 50px;
             margin-top: 15px;
             transition: 0.3s;
-            border: 1px solid transparent;
+            font-size: 0.9rem;
         }
 
-        .btn-spotify.locked {
+        /* Botão Lançamento Novo */
+        .btn-red {
+            background: var(--bright-red);
+        }
+
+        .btn-red.locked {
             background: #333;
             cursor: not-allowed;
             opacity: 0.6;
         }
 
-        .btn-spotify:hover:not(.locked) {
-            background: transparent;
-            border: 1px solid var(--bright-red);
-            color: var(--bright-red);
-            box-shadow: 0 0 15px var(--bright-red);
+        /* Botão Stars From The Future */
+        .btn-green {
+            background: var(--spotify-green);
+            color: #000;
         }
 
-        /* Seção Stars From The Future (Secundário) */
+        .btn-green:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(29, 185, 84, 0.4);
+        }
+
+        /* Seção Stars From The Future */
         .secondary-release {
             margin-top: 60px;
             padding-top: 30px;
@@ -97,41 +105,29 @@
         }
 
         .secondary-release h2 {
-            font-size: 1rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: #555;
+            color: #777;
+            margin-bottom: 20px;
         }
 
         .stars-cover {
-            width: 120px;
-            opacity: 0.7;
-            filter: grayscale(0.5);
-            transition: 0.3s;
-        }
-
-        .stars-cover:hover {
-            opacity: 1;
-            filter: grayscale(0);
+            width: 150px;
+            border-radius: 4px;
+            margin-bottom: 10px;
         }
 
         footer {
             margin-top: 50px;
             font-size: 0.7rem;
             color: #444;
-            width: 100%;
         }
 
         .email {
             color: var(--bright-red);
             text-decoration: none;
         }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.02); }
-        }
-        .main-release h3 { color: #fff; margin-bottom: 5px; }
     </style>
 </head>
 <body>
@@ -143,16 +139,20 @@
 
         <section class="main-release">
             <img src="https://i.postimg.cc/HsFR7fQG/2c17ad83698275061e18177d72373ce8.jpg" alt="NaNNo Cover" class="nanno-cover">
-            <h3>NaNNo</h3>
-            <div id="countdown" class="countdown-container">00:00:00:00</div>
+            <h3 style="color:#fff;">NaNNo</h3>
+            <div id="countdown" class="countdown-container">CALCULANDO...</div>
             
-            <a href="#" id="spotify-link" class="btn-spotify locked">LISTEN ON SPOTIFY</a>
+            <a href="#" id="spotify-link" class="btn-spotify btn-red locked">DISPONÍVEL EM BREVE</a>
         </section>
 
         <section class="secondary-release">
-            <h2>Out now</h2>
+            <h2>Latest Release</h2>
             <img src="https://i.postimg.cc/wMZfLmRN/b5c0d73e86627ef0dba448b02e2971d8.jpg" alt="Stars From The Future Cover" class="stars-cover">
-            <p style="font-size: 0.8rem;">stars from the future</p>
+            <p style="font-size: 0.8rem; color: #fff; margin: 5px 0;">stars from the future</p>
+            
+            <a href="https://open.spotify.com/track/6SJvnMVlm9IUjwggj3Gydc?si=-cfCJ0f0TvKGQtFRp4vZ-w" target="_blank" class="btn-spotify btn-green">
+                LISTEN ON SPOTIFY
+            </a>
         </section>
 
         <footer>
@@ -162,7 +162,6 @@
     </div>
 
     <script>
-        // Configuração da data de lançamento: 10/01/2026 às 00:00
         const launchDate = new Date("Jan 10, 2026 00:00:00").getTime();
 
         const timer = setInterval(function() {
@@ -177,13 +176,12 @@
             document.getElementById("countdown").innerHTML = 
                 (days > 0 ? days + "d " : "") + hours + "h " + minutes + "m " + seconds + "s ";
 
-            // Quando a contagem termina
             if (distance < 0) {
                 clearInterval(timer);
                 document.getElementById("countdown").innerHTML = "OUT NOW";
                 const btn = document.getElementById("spotify-link");
                 btn.classList.remove("locked");
-                btn.href = "https://open.spotify.com"; // Substitua pelo link real quando tiver
+                btn.href = "https://open.spotify.com"; 
                 btn.innerHTML = "LISTEN ON SPOTIFY";
             }
         }, 1000);
