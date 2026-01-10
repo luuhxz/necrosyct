@@ -31,7 +31,7 @@
             border: 1px solid rgba(139, 0, 0, 0.3);
             padding: 40px 20px;
             background: linear-gradient(180deg, rgba(20,20,20,1) 0%, rgba(10,10,10,1) 100%);
-            box-shadow: 0 0 30px rgba(139, 0, 0, 0.1);
+            box-shadow: 0 0 30px rgba(139, 0, 0, 0.2);
         }
 
         h1 {
@@ -49,55 +49,63 @@
 
         .nanno-cover {
             width: 100%;
-            max-width: 350px;
+            max-width: 380px;
             border: 2px solid var(--deep-red);
             filter: saturate(1.2) contrast(1.1);
+            box-shadow: 0 0 20px rgba(139, 0, 0, 0.4);
         }
 
-        .countdown-container {
+        .status-badge {
             margin: 20px 0;
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             color: var(--bright-red);
             font-weight: bold;
-            text-shadow: 0 0 10px rgba(209, 0, 0, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            animation: pulse 2s infinite;
         }
 
-        /* Botão Geral */
+        @keyframes pulse {
+            0% { opacity: 0.6; }
+            50% { opacity: 1; }
+            100% { opacity: 0.6; }
+        }
+
+        /* Botões */
         .btn-spotify {
             display: inline-block;
             color: #fff;
-            padding: 12px 30px;
+            padding: 14px 35px;
             text-decoration: none;
             font-weight: bold;
             border-radius: 50px;
-            margin-top: 15px;
+            margin-top: 10px;
             transition: 0.3s;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            text-transform: uppercase;
         }
 
-        /* Botão Lançamento Novo */
         .btn-red {
             background: var(--bright-red);
+            box-shadow: 0 4px 15px rgba(209, 0, 0, 0.3);
         }
 
-        .btn-red.locked {
-            background: #333;
-            cursor: not-allowed;
-            opacity: 0.6;
+        .btn-red:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(209, 0, 0, 0.5);
         }
 
-        /* Botão Stars From The Future */
         .btn-green {
             background: var(--spotify-green);
             color: #000;
         }
 
         .btn-green:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(29, 185, 84, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(29, 185, 84, 0.4);
         }
 
-        /* Seção Stars From The Future */
+        /* Seção Secundária */
         .secondary-release {
             margin-top: 60px;
             padding-top: 30px;
@@ -105,21 +113,22 @@
         }
 
         .secondary-release h2 {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: #777;
+            color: #555;
             margin-bottom: 20px;
         }
 
         .stars-cover {
-            width: 150px;
-            border-radius: 4px;
+            width: 140px;
+            border-radius: 2px;
             margin-bottom: 10px;
+            filter: grayscale(0.3);
         }
 
         footer {
-            margin-top: 50px;
+            margin-top: 60px;
             font-size: 0.7rem;
             color: #444;
         }
@@ -127,6 +136,7 @@
         .email {
             color: var(--bright-red);
             text-decoration: none;
+            font-weight: bold;
         }
     </style>
 </head>
@@ -139,16 +149,19 @@
 
         <section class="main-release">
             <img src="https://i.postimg.cc/HsFR7fQG/2c17ad83698275061e18177d72373ce8.jpg" alt="NaNNo Cover" class="nanno-cover">
-            <h3 style="color:#fff;">NaNNo</h3>
-            <div id="countdown" class="countdown-container">CALCULANDO...</div>
+            <h3 style="color:#fff; font-size: 1.8rem; margin-top: 15px;">NaNNo</h3>
             
-            <a href="#" id="spotify-link" class="btn-spotify btn-red locked">DISPONÍVEL EM BREVE</a>
+            <div id="status" class="status-badge">Out Now</div>
+            
+            <a href="Https://open.spotify.com/album/76mBxB35H4rAz5Eg1YFoiK?si=N8j5VYA6QRqpR1jjW2sDpw" target="_blank" class="btn-spotify btn-red">
+                LISTEN ON SPOTIFY
+            </a>
         </section>
 
         <section class="secondary-release">
-            <h2>Latest Release</h2>
+            <h2>Previously Released</h2>
             <img src="https://i.postimg.cc/wMZfLmRN/b5c0d73e86627ef0dba448b02e2971d8.jpg" alt="Stars From The Future Cover" class="stars-cover">
-            <p style="font-size: 0.8rem; color: #fff; margin: 5px 0;">stars from the future</p>
+            <p style="font-size: 0.85rem; color: #fff; margin: 5px 0 15px 0;">stars from the future</p>
             
             <a href="https://open.spotify.com/track/6SJvnMVlm9IUjwggj3Gydc?si=-cfCJ0f0TvKGQtFRp4vZ-w" target="_blank" class="btn-spotify btn-green">
                 LISTEN ON SPOTIFY
@@ -157,35 +170,9 @@
 
         <footer>
             <p>contact: <a href="mailto:poviest.luiz@gmail.com" class="email">poviest.luiz@gmail.com</a></p>
-            <p style="margin-top: 20px;">© 2026 necrosyct</p>
+            <p style="margin-top: 20px; opacity: 0.5;">© 2026 necrosyct</p>
         </footer>
     </div>
-
-    <script>
-        const launchDate = new Date("Jan 10, 2026 00:00:00").getTime();
-
-        const timer = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = launchDate - now;
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById("countdown").innerHTML = 
-                (days > 0 ? days + "d " : "") + hours + "h " + minutes + "m " + seconds + "s ";
-
-            if (distance < 0) {
-                clearInterval(timer);
-                document.getElementById("countdown").innerHTML = "OUT NOW";
-                const btn = document.getElementById("spotify-link");
-                btn.classList.remove("locked");
-                btn.href = "https://open.spotify.com"; 
-                btn.innerHTML = "LISTEN ON SPOTIFY";
-            }
-        }, 1000);
-    </script>
 
 </body>
 </html>
