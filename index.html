@@ -3,107 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>necrosyct | Stars From The Future</title>
+    <title>necrosyct | NaNNo</title>
     <style>
-        /* Estética Indie/Grunge - Baseada na foto */
+        /* Paleta inspirada na imagem: Vermelho Paixão, Preto e Tons de Cinza */
+        :root {
+            --deep-red: #8b0000;
+            --bright-red: #d10000;
+            --bg-dark: #0a0a0a;
+            --text-gray: #b0b0b0;
+        }
+
         body {
-            background-color: #1a1a1a; 
-            color: #d1d1d1;
+            background-color: var(--bg-dark);
+            color: var(--text-gray);
             font-family: 'Courier New', Courier, monospace;
             margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 20px;
-            line-height: 1.6;
         }
 
         .container {
-            max-width: 600px;
+            max-width: 500px;
             width: 100%;
             text-align: center;
-            border: 1px dashed #4a5d4a; /* Verde musgo sutil */
+            border: 1px solid rgba(139, 0, 0, 0.3);
             padding: 40px 20px;
-            background: rgba(255, 255, 255, 0.02);
-            margin-top: 20px;
+            background: linear-gradient(180deg, rgba(20,20,20,1) 0%, rgba(10,10,10,1) 100%);
+            box-shadow: 0 0 30px rgba(139, 0, 0, 0.1);
         }
 
         h1 {
-            font-size: 2.5rem;
-            letter-spacing: -2px;
+            font-size: 2.8rem;
+            letter-spacing: -3px;
             color: #fff;
-            margin-bottom: 5px;
+            margin-bottom: 0;
             text-transform: lowercase;
         }
 
-        .subtitle {
-            font-style: italic;
-            color: #888;
-            margin-bottom: 30px;
-            letter-spacing: 1px;
+        /* Seção NaNNo (Destaque) */
+        .main-release {
+            margin-top: 30px;
         }
 
-        .cover-art {
+        .nanno-cover {
             width: 100%;
-            max-width: 400px;
-            border-radius: 2px;
-            filter: grayscale(10%) contrast(95%);
-            box-shadow: 12px 12px 0px #2d362d; 
-            margin-bottom: 40px;
+            max-width: 350px;
+            border: 2px solid var(--deep-red);
+            filter: saturate(1.2) contrast(1.1);
+            transition: 0.5s;
         }
 
-        .music-player {
-            margin: 30px 0;
+        .countdown-container {
+            margin: 20px 0;
+            font-size: 1.5rem;
+            color: var(--bright-red);
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(209, 0, 0, 0.5);
         }
 
         .btn-spotify {
             display: inline-block;
-            background: #1DB954; /* Cor icônica do Spotify */
-            color: #000;
-            padding: 15px 40px;
+            background: var(--bright-red);
+            color: #fff;
+            padding: 15px 35px;
             text-decoration: none;
             font-weight: bold;
-            font-size: 1.1rem;
+            border-radius: 2px;
+            margin-top: 15px;
             transition: 0.3s;
-            border-radius: 50px;
-            border: none;
+            border: 1px solid transparent;
         }
 
-        .btn-spotify:hover {
-            background: #1ed760;
-            transform: scale(1.05);
-            box-shadow: 0px 0px 20px rgba(29, 185, 84, 0.4);
+        .btn-spotify.locked {
+            background: #333;
+            cursor: not-allowed;
+            opacity: 0.6;
         }
 
-        .star-icon {
-            font-size: 30px;
-            color: #fff;
-            margin: 20px 0;
-            opacity: 0.8;
-            animation: flicker 2s infinite alternate;
+        .btn-spotify:hover:not(.locked) {
+            background: transparent;
+            border: 1px solid var(--bright-red);
+            color: var(--bright-red);
+            box-shadow: 0 0 15px var(--bright-red);
         }
 
-        @keyframes flicker {
-            from { opacity: 0.4; }
-            to { opacity: 1; }
+        /* Seção Stars From The Future (Secundário) */
+        .secondary-release {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #222;
+        }
+
+        .secondary-release h2 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #555;
+        }
+
+        .stars-cover {
+            width: 120px;
+            opacity: 0.7;
+            filter: grayscale(0.5);
+            transition: 0.3s;
+        }
+
+        .stars-cover:hover {
+            opacity: 1;
+            filter: grayscale(0);
         }
 
         footer {
             margin-top: 50px;
-            font-size: 0.8rem;
-            color: #666;
-            border-top: 1px solid #333;
-            padding-top: 20px;
+            font-size: 0.7rem;
+            color: #444;
             width: 100%;
         }
 
         .email {
-            color: #fff;
+            color: var(--bright-red);
             text-decoration: none;
-            display: block;
-            margin-top: 10px;
-            font-weight: bold;
         }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.02); }
+        }
+        .main-release h3 { color: #fff; margin-bottom: 5px; }
     </style>
 </head>
 <body>
@@ -111,26 +139,55 @@
     <div class="container">
         <header>
             <h1>necrosyct</h1>
-            <p class="subtitle">"stars from the future"</p>
         </header>
 
-        <img src="https://cdn.discordapp.com/attachments/1453260689882878137/1456500686580879390/b5c0d73e86627ef0dba448b02e2971d8.jpg?ex=69589778&is=695745f8&hm=7d6089e58f920ba58266c024cbe9f134b82921eb62f9cbd368a178217b126477&" alt="Stars From The Future Cover" class="cover-art">
+        <section class="main-release">
+            <img src="https://i.postimg.cc/HsFR7fQG/2c17ad83698275061e18177d72373ce8.jpg" alt="NaNNo Cover" class="nanno-cover">
+            <h3>NaNNo</h3>
+            <div id="countdown" class="countdown-container">00:00:00:00</div>
+            
+            <a href="#" id="spotify-link" class="btn-spotify locked">LISTEN ON SPOTIFY</a>
+        </section>
 
-        <div class="star-icon">★</div>
-
-        <section class="music-player">
-            <a href="https://open.spotify.com/track/6SJvnMVlm9IUjwggj3Gydc?si=a69DYOxtQO6Uy334Qtw2Ww" target="_blank" class="btn-spotify">
-             LISTEN ON SPOTIFY
-            </a>
+        <section class="secondary-release">
+            <h2>Out now</h2>
+            <img src="https://i.postimg.cc/wMZfLmRN/b5c0d73e86627ef0dba448b02e2971d8.jpg" alt="Stars From The Future Cover" class="stars-cover">
+            <p style="font-size: 0.8rem;">stars from the future</p>
         </section>
 
         <footer>
-            <p>contact email:</p>
-            <a href="mailto:poviest.luiz@gmail.com" class="email">poviest.luiz@gmail.com</a>
-            <p style="margin-top: 30px; opacity: 0.5;">&copy; 2026 necrosyct</p>
+            <p>contact: <a href="mailto:poviest.luiz@gmail.com" class="email">poviest.luiz@gmail.com</a></p>
+            <p style="margin-top: 20px;">© 2026 necrosyct</p>
         </footer>
     </div>
 
+    <script>
+        // Configuração da data de lançamento: 10/01/2026 às 00:00
+        const launchDate = new Date("Jan 10, 2026 00:00:00").getTime();
+
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = launchDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown").innerHTML = 
+                (days > 0 ? days + "d " : "") + hours + "h " + minutes + "m " + seconds + "s ";
+
+            // Quando a contagem termina
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById("countdown").innerHTML = "OUT NOW";
+                const btn = document.getElementById("spotify-link");
+                btn.classList.remove("locked");
+                btn.href = "https://open.spotify.com"; // Substitua pelo link real quando tiver
+                btn.innerHTML = "LISTEN ON SPOTIFY";
+            }
+        }, 1000);
+    </script>
+
 </body>
-    </html>
-    
+</html>
