@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* Paleta de cores baseada na pintura */
             --sky-blue: #a8c8e8;
             --cloud-cream: #f8f8f4;
             --soft-pink: #e8b8c8;
@@ -17,7 +16,6 @@
         }
 
         body {
-            /* Fundo gradiente estilo céu */
             background: linear-gradient(135deg, var(--sky-blue) 0%, #c4e0f5 100%);
             color: var(--text-dark);
             font-family: 'Montserrat', sans-serif;
@@ -27,22 +25,17 @@
             align-items: center;
             padding: 20px;
             min-height: 100vh;
-            box-sizing: border-box;
         }
 
         .container {
             max-width: 550px;
             width: 100%;
             text-align: center;
-            /* Estilo "Nuvem" para o container */
             background-color: var(--cloud-cream);
             border: 3px solid #fff;
             border-radius: 25px;
             padding: 40px 25px;
-            box-shadow: 
-                0 10px 30px rgba(168, 200, 232, 0.6),
-                inset 0 0 20px rgba(255, 255, 255, 0.8);
-            position: relative;
+            box-shadow: 0 10px 30px rgba(168, 200, 232, 0.6);
             margin-top: 20px;
         }
 
@@ -52,35 +45,25 @@
             color: var(--text-dark);
             margin: 0 0 30px 0;
             text-transform: lowercase;
-            text-shadow: 2px 2px 4px rgba(168, 200, 232, 0.5);
         }
 
-        /* --- SEÇÃO PRINCIPAL (OXIDANT) --- */
-        .cover-container {
-            position: relative;
-            margin: 0 auto;
-            max-width: 350px;
-        }
-
+        /* OXIDANT SECTION */
         .ep-cover {
             width: 100%;
+            max-width: 350px;
             border-radius: 4px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            display: block;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .ep-title {
             font-family: 'Cinzel Decorative', cursive;
             font-size: 3rem;
-            color: var(--text-dark);
             margin: 25px 0 5px 0;
             text-transform: uppercase;
             letter-spacing: 3px;
-            /* Sombra suave em vez do flicker agressivo */
             text-shadow: 1px 1px 0px var(--soft-pink), -1px -1px 0px var(--muted-yellow);
         }
 
-        /* Countdown Aesthetic */
         #countdown {
             display: flex;
             justify-content: center;
@@ -89,29 +72,21 @@
         }
 
         .time-box {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
             background: #fff;
             padding: 15px;
             border: 2px solid var(--soft-pink);
             border-radius: 15px;
             min-width: 70px;
-            box-shadow: 0 4px 8px rgba(232, 184, 200, 0.2);
         }
 
         .number {
-            font-family: 'Montserrat', sans-serif;
             font-size: 2.2rem;
             font-weight: 600;
-            color: var(--text-dark);
         }
 
         .label {
             font-size: 0.65rem;
             color: var(--text-light);
-            margin-top: 5px;
-            letter-spacing: 2px;
             text-transform: uppercase;
         }
 
@@ -123,37 +98,13 @@
             font-weight: 600;
         }
 
-        /* Estado "JÁ LANÇOU" */
-        .hidden { display: none !important; }
-        .out-now-text {
-            display: none;
-            font-family: 'Cinzel Decorative', cursive;
-            font-size: 1.8rem;
-            background: linear-gradient(to right, var(--soft-pink), var(--muted-yellow));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: bold;
-            margin: 20px 0;
-        }
-
-        /* --- SEÇÃO SECUNDÁRIA (ANTERIORES) --- */
+        /* PREVIOUS RELEASES */
         .secondary-release {
             margin-top: 50px;
             padding-top: 30px;
             border-top: 2px dashed var(--soft-pink);
-            text-align: center;
         }
 
-        .secondary-release h3 {
-            font-family: 'Cinzel Decorative', cursive;
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-light);
-            margin-bottom: 25px;
-        }
-
-        /* Grid para os lançamentos anteriores */
         .prev-grid {
             display: flex;
             justify-content: center;
@@ -171,20 +122,10 @@
         .prev-cover {
             width: 100%;
             border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s;
         }
 
-        .prev-cover:hover {
-            transform: translateY(-3px);
-        }
-
-        .prev-title {
-            font-size: 0.85rem;
-            color: var(--text-dark);
-            margin: 10px 0 10px 0;
-            font-weight: 600;
-        }
+        .prev-cover:hover { transform: translateY(-3px); }
 
         .btn-small {
             font-size: 0.7rem;
@@ -193,16 +134,14 @@
             background-color: #fff;
             color: var(--text-light);
             text-decoration: none;
-            text-transform: uppercase;
             border-radius: 20px;
-            transition: 0.3s;
             font-weight: 600;
+            text-transform: uppercase;
         }
 
         .btn-small:hover {
             background: var(--soft-pink);
             color: #fff;
-            border-color: var(--soft-pink);
         }
 
         footer {
@@ -211,74 +150,47 @@
             color: var(--text-light);
         }
 
-        footer a {
-            color: var(--text-dark);
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.2s;
-        }
-        
-        footer a:hover {
-            color: var(--soft-pink);
-        }
+        footer a { color: var(--text-dark); font-weight: 600; text-decoration: none; }
+
+        .hidden { display: none !important; }
+        .out-now-text { display: none; font-family: 'Cinzel Decorative', cursive; font-size: 1.8rem; color: var(--soft-pink); margin: 20px 0; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <header>
-            <h1>necrosyct</h1>
-        </header>
+        <h1>necrosyct</h1>
 
         <section class="main-release">
-            <div class="cover-container">
-                <img src="https://cdn.discordapp.com/attachments/1263357446341005363/1462187970168750303/avenue_cover_ff9f9bc6dc1551a6c275ed6e63b04feetplv-tqklr3o1h5-resize_480_480.jpg?ex=696d482a&is=696bf6aa&hm=a3e37b81ad1be725d8a4f90463f519cdc3df314690cfb100d45f0aa162c4a648&" alt="Oxidant Cover" class="ep-cover">
-            </div>
-
+            <img src="https://cdn.discordapp.com/attachments/1263357446341005363/1462187970168750303/avenue_cover_ff9f9bc6dc1551a6c275ed6e63b04feetplv-tqklr3o1h5-resize_480_480.jpg?ex=696d482a&is=696bf6aa&hm=a3e37b81ad1be725d8a4f90463f519cdc3df314690cfb100d45f0aa162c4a648&" alt="Oxidant" class="ep-cover">
             <h2 class="ep-title">Oxidant</h2>
             <p class="release-msg">18.01.26 // 00:00</p>
 
             <div id="countdown">
-                <div class="time-box">
-                    <span id="hours" class="number">00</span>
-                    <span class="label">Hours</span>
-                </div>
-                <div class="time-box">
-                    <span id="minutes" class="number">00</span>
-                    <span class="label">Mins</span>
-                </div>
-                <div class="time-box">
-                    <span id="seconds" class="number">00</span>
-                    <span class="label">Secs</span>
-                </div>
+                <div class="time-box"><span id="hours" class="number">00</span><div class="label">Hours</div></div>
+                <div class="time-box"><span id="minutes" class="number">00</span><div class="label">Mins</div></div>
+                <div class="time-box"><span id="seconds" class="number">00</span><div class="label">Secs</div></div>
             </div>
-
-            <div id="out-now-msg" class="out-now-text">AVAILABLE NOW</div>
-            
-            </section>
+            <div id="out-now-msg" class="out-now-text">OUT NOW</div>
+        </section>
 
         <section class="secondary-release">
-            <h3>Previously Released</h3>
-            
+            <h3 style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 20px; text-transform: uppercase;">Previously Released</h3>
             <div class="prev-grid">
                 <div class="prev-item">
                     <a href="https://sndo.ffm.to/4z404wg" target="_blank">
-                        <img src="https://i.postimg.cc/HsFR7fQG/2c17ad83698275061e18177d72373ce8.jpg" alt="NaNNo Cover" class="prev-cover">
+                        <img src="https://i.postimg.cc/HsFR7fQG/2c17ad83698275061e18177d72373ce8.jpg" alt="NaNNo" class="prev-cover">
                     </a>
-                    <p class="prev-title">NaNNo</p>
-                    <a href="https://sndo.ffm.to/4z404wg" target="_blank" class="btn-small">
-                        Listen
-                    </a>
+                    <p style="font-size: 0.8rem; margin: 10px 0;">NaNNo</p>
+                    <a href="https://sndo.ffm.to/4z404wg" target="_blank" class="btn-small">Listen</a>
                 </div>
 
                 <div class="prev-item">
-                    <a href="#" target="_blank">
-                        <img src="https://i.postimg.cc/wMZfLmRN/b5c0d73e86627ef0dba448b02e2971d8.jpg" alt="Stars from the future Cover" class="prev-cover">
+                    <a href="https://sndo.ffm.to/yzy8p5e" target="_blank">
+                        <img src="https://i.postimg.cc/wMZfLmRN/b5c0d73e86627ef0dba448b02e2971d8.jpg" alt="Stars From The Future" class="prev-cover">
                     </a>
-                    <p class="prev-title">stars from the future</p>
-                    <a href="#" target="_blank" class="btn-small">
-                        Listen
-                    </a>
+                    <p style="font-size: 0.8rem; margin: 10px 0;">stars from the future</p>
+                    <a href="https://sndo.ffm.to/yzy8p5e" target="_blank" class="btn-small">Listen</a>
                 </div>
             </div>
         </section>
@@ -290,13 +202,10 @@
     </div>
 
     <script>
-        // Data alvo: 18/01/2026 00:00
         const releaseDate = new Date("January 18, 2026 00:00:00").getTime();
-
         const timer = setInterval(function() {
             const now = new Date().getTime();
             const distance = releaseDate - now;
-
             const hours = Math.floor(distance / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
@@ -305,17 +214,12 @@
             document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
             document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
 
-            // Quando o tempo acabar
             if (distance < 0) {
                 clearInterval(timer);
                 document.getElementById("countdown").classList.add("hidden");
-                document.querySelector(".release-msg").innerText = "THE WAIT IS OVER";
-                
-                const outNow = document.getElementById("out-now-msg");
-                outNow.style.display = "block";
+                document.getElementById("out-now-msg").style.display = "block";
             }
         }, 1000);
     </script>
-
 </body>
 </html>
