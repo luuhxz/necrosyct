@@ -3,203 +3,223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>necrosyct | Oxidant</title>
+    <title>necrosyct | Oxidant Countdown</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --deep-red: #8b0000;
-            --bright-red: #ff1a1a;
-            --bg-dark: #050505;
-            --text-gray: #b0b0b0;
-            --rust: #a83f39;
+            /* Paleta de cores baseada na pintura */
+            --sky-blue: #a8c8e8;
+            --cloud-cream: #f8f8f4;
+            --soft-pink: #e8b8c8;
+            --muted-yellow: #e8e8b8;
+            --text-dark: #546e7a;
+            --text-light: #89a1ad;
         }
 
         body {
-            background-color: var(--bg-dark);
-            color: var(--text-gray);
-            font-family: 'Courier New', Courier, monospace;
+            /* Fundo gradiente estilo céu */
+            background: linear-gradient(135deg, var(--sky-blue) 0%, #c4e0f5 100%);
+            color: var(--text-dark);
+            font-family: 'Montserrat', sans-serif;
             margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
             padding: 20px;
             min-height: 100vh;
+            box-sizing: border-box;
         }
 
         .container {
-            max-width: 500px;
+            max-width: 550px;
             width: 100%;
             text-align: center;
-            border: 1px solid rgba(139, 0, 0, 0.3);
-            padding: 40px 20px;
-            background: radial-gradient(circle, rgba(20,20,20,1) 0%, rgba(5,5,5,1) 90%);
-            box-shadow: 0 0 40px rgba(139, 0, 0, 0.15);
+            /* Estilo "Nuvem" para o container */
+            background-color: var(--cloud-cream);
+            border: 3px solid #fff;
+            border-radius: 25px;
+            padding: 40px 25px;
+            box-shadow: 
+                0 10px 30px rgba(168, 200, 232, 0.6),
+                inset 0 0 20px rgba(255, 255, 255, 0.8);
             position: relative;
             margin-top: 20px;
         }
 
         h1 {
-            font-size: 2.5rem;
-            letter-spacing: -2px;
-            color: #fff;
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 2.8rem;
+            color: var(--text-dark);
             margin: 0 0 30px 0;
             text-transform: lowercase;
-            opacity: 0.9;
+            text-shadow: 2px 2px 4px rgba(168, 200, 232, 0.5);
         }
 
         /* --- SEÇÃO PRINCIPAL (OXIDANT) --- */
         .cover-container {
             position: relative;
             margin: 0 auto;
-            max-width: 350px; /* Capa principal um pouco maior */
+            max-width: 350px;
         }
 
         .ep-cover {
             width: 100%;
-            border: 1px solid var(--deep-red);
-            filter: contrast(1.1) sepia(0.2);
-            box-shadow: 0 0 25px rgba(139, 0, 0, 0.3);
+            border-radius: 4px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
             display: block;
         }
 
         .ep-title {
+            font-family: 'Cinzel Decorative', cursive;
             font-size: 3rem;
-            color: #fff;
-            margin: 20px 0 5px 0;
+            color: var(--text-dark);
+            margin: 25px 0 5px 0;
             text-transform: uppercase;
-            letter-spacing: 5px;
-            text-shadow: 2px 2px 0px var(--deep-red);
-            animation: flicker 4s infinite;
+            letter-spacing: 3px;
+            /* Sombra suave em vez do flicker agressivo */
+            text-shadow: 1px 1px 0px var(--soft-pink), -1px -1px 0px var(--muted-yellow);
         }
 
-        @keyframes flicker {
-            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; text-shadow: 2px 2px 0px var(--deep-red); }
-            20%, 24%, 55% { opacity: 0.5; text-shadow: -2px -2px 0px var(--bright-red); }
-        }
-
-        /* Countdown */
+        /* Countdown Aesthetic */
         #countdown {
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin: 25px 0;
+            margin: 30px 0;
         }
 
         .time-box {
             display: flex;
             flex-direction: column;
             align-items: center;
-            background: rgba(139, 0, 0, 0.1);
-            padding: 10px;
-            border: 1px solid var(--deep-red);
-            min-width: 60px;
+            background: #fff;
+            padding: 15px;
+            border: 2px solid var(--soft-pink);
+            border-radius: 15px;
+            min-width: 70px;
+            box-shadow: 0 4px 8px rgba(232, 184, 200, 0.2);
         }
 
         .number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--text-dark);
         }
 
         .label {
-            font-size: 0.6rem;
-            color: var(--bright-red);
+            font-size: 0.65rem;
+            color: var(--text-light);
             margin-top: 5px;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
         .release-msg {
-            font-size: 0.8rem;
-            color: var(--text-gray);
+            font-size: 0.9rem;
+            color: var(--text-light);
             margin-bottom: 20px;
             letter-spacing: 2px;
-        }
-
-        .btn-presave {
-            display: inline-block;
-            background: transparent;
-            color: var(--bright-red);
-            padding: 12px 30px;
-            text-decoration: none;
-            font-weight: bold;
-            border: 1px solid var(--bright-red);
-            transition: 0.3s;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-        }
-
-        .btn-presave:hover {
-            background: var(--deep-red);
-            color: #fff;
-            box-shadow: 0 0 15px var(--deep-red);
+            font-weight: 600;
         }
 
         /* Estado "JÁ LANÇOU" */
         .hidden { display: none !important; }
         .out-now-text {
             display: none;
-            font-size: 1.5rem;
-            color: var(--bright-red);
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 1.8rem;
+            background: linear-gradient(to right, var(--soft-pink), var(--muted-yellow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             font-weight: bold;
-            animation: pulse 1s infinite alternate;
             margin: 20px 0;
         }
 
-        /* --- SEÇÃO SECUNDÁRIA (NaNNo) --- */
+        /* --- SEÇÃO SECUNDÁRIA (ANTERIORES) --- */
         .secondary-release {
-            margin-top: 60px;
+            margin-top: 50px;
             padding-top: 30px;
-            border-top: 1px solid #222;
+            border-top: 2px dashed var(--soft-pink);
             text-align: center;
         }
 
         .secondary-release h3 {
-            font-size: 0.8rem;
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 1rem;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #555;
-            margin-bottom: 20px;
+            letter-spacing: 1px;
+            color: var(--text-light);
+            margin-bottom: 25px;
+        }
+
+        /* Grid para os lançamentos anteriores */
+        .prev-grid {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .prev-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 140px;
         }
 
         .prev-cover {
-            width: 140px; /* Capa menor */
-            border: 1px solid #333;
-            filter: grayscale(0.6);
-            transition: filter 0.3s ease;
-            margin-bottom: 10px;
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
         }
 
         .prev-cover:hover {
-            filter: grayscale(0);
-            border-color: var(--deep-red);
+            transform: translateY(-3px);
         }
 
         .prev-title {
-            font-size: 1rem;
-            color: #fff;
-            margin: 5px 0 15px 0;
-            letter-spacing: 1px;
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            margin: 10px 0 10px 0;
+            font-weight: 600;
         }
 
         .btn-small {
-            font-size: 0.75rem;
-            padding: 8px 20px;
-            border: 1px solid #444;
-            color: #888;
+            font-size: 0.7rem;
+            padding: 6px 15px;
+            border: 1px solid var(--soft-pink);
+            background-color: #fff;
+            color: var(--text-light);
             text-decoration: none;
             text-transform: uppercase;
+            border-radius: 20px;
             transition: 0.3s;
+            font-weight: 600;
         }
 
         .btn-small:hover {
-            border-color: #fff;
+            background: var(--soft-pink);
             color: #fff;
-            background: #111;
+            border-color: var(--soft-pink);
         }
 
         footer {
             margin-top: 50px;
-            font-size: 0.7rem;
-            color: #444;
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        footer a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        
+        footer a:hover {
+            color: var(--soft-pink);
         }
     </style>
 </head>
@@ -221,39 +241,51 @@
             <div id="countdown">
                 <div class="time-box">
                     <span id="hours" class="number">00</span>
-                    <span class="label">HOURS</span>
+                    <span class="label">Hours</span>
                 </div>
                 <div class="time-box">
                     <span id="minutes" class="number">00</span>
-                    <span class="label">MINS</span>
+                    <span class="label">Mins</span>
                 </div>
                 <div class="time-box">
                     <span id="seconds" class="number">00</span>
-                    <span class="label">SECS</span>
+                    <span class="label">Secs</span>
                 </div>
             </div>
 
             <div id="out-now-msg" class="out-now-text">AVAILABLE NOW</div>
             
-            <a href="#" class="btn-presave" id="main-btn">Presave on Spotify</a>
-        </section>
+            </section>
 
         <section class="secondary-release">
             <h3>Previously Released</h3>
             
-            <a href="https://sndo.ffm.to/4z404wg" target="_blank">
-                <img src="https://i.postimg.cc/HsFR7fQG/2c17ad83698275061e18177d72373ce8.jpg" alt="NaNNo Cover" class="prev-cover">
-            </a>
-            
-            <p class="prev-title">NaNNo</p>
-            
-            <a href="https://sndo.ffm.to/4z404wg" target="_blank" class="btn-small">
-                Listen
-            </a>
+            <div class="prev-grid">
+                <div class="prev-item">
+                    <a href="https://sndo.ffm.to/4z404wg" target="_blank">
+                        <img src="https://i.postimg.cc/HsFR7fQG/2c17ad83698275061e18177d72373ce8.jpg" alt="NaNNo Cover" class="prev-cover">
+                    </a>
+                    <p class="prev-title">NaNNo</p>
+                    <a href="https://sndo.ffm.to/4z404wg" target="_blank" class="btn-small">
+                        Listen
+                    </a>
+                </div>
+
+                <div class="prev-item">
+                    <a href="#" target="_blank">
+                        <img src="https://i.postimg.cc/wMZfLmRN/b5c0d73e86627ef0dba448b02e2971d8.jpg" alt="Stars from the future Cover" class="prev-cover">
+                    </a>
+                    <p class="prev-title">stars from the future</p>
+                    <a href="#" target="_blank" class="btn-small">
+                        Listen
+                    </a>
+                </div>
+            </div>
         </section>
 
         <footer>
-            <p>© 2026 necrosyct</p>
+            <p>contact: <a href="mailto:poviest.luiz@gmail.com">poviest.luiz@gmail.com</a></p>
+            <p style="margin-top: 10px;">© 2026 necrosyct</p>
         </footer>
     </div>
 
@@ -265,7 +297,6 @@
             const now = new Date().getTime();
             const distance = releaseDate - now;
 
-            // Cálculo para mostrar Horas totais (mesmo que seja > 24h) para manter layout de 3 caixas
             const hours = Math.floor(distance / (1000 * 60 * 60));
             const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
             const seconds = Math.floor((distance % (1000 * 60)) / 1000);
@@ -282,12 +313,6 @@
                 
                 const outNow = document.getElementById("out-now-msg");
                 outNow.style.display = "block";
-                
-                const btn = document.getElementById("main-btn");
-                btn.innerText = "LISTEN NOW";
-                btn.style.backgroundColor = "#d10000";
-                btn.style.color = "#fff";
-                btn.style.borderColor = "#d10000";
             }
         }, 1000);
     </script>
