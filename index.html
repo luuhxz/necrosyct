@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>necrosyct | NaNNo</title>
+    <title>necrosyct | Oxidant</title>
     <style>
         :root {
             --deep-red: #8b0000;
-            --bright-red: #d10000;
-            --bg-dark: #0a0a0a;
+            --bright-red: #ff1a1a;
+            --bg-dark: #050505;
             --text-gray: #b0b0b0;
-            --spotify-green: #1DB954;
+            --rust: #a83f39;
         }
 
         body {
@@ -22,6 +22,7 @@
             flex-direction: column;
             align-items: center;
             padding: 20px;
+            min-height: 100vh;
         }
 
         .container {
@@ -30,89 +31,128 @@
             text-align: center;
             border: 1px solid rgba(139, 0, 0, 0.3);
             padding: 40px 20px;
-            background: linear-gradient(180deg, rgba(20,20,20,1) 0%, rgba(10,10,10,1) 100%);
-            box-shadow: 0 0 30px rgba(139, 0, 0, 0.2);
+            background: radial-gradient(circle, rgba(20,20,20,1) 0%, rgba(5,5,5,1) 90%);
+            box-shadow: 0 0 40px rgba(139, 0, 0, 0.15);
+            position: relative;
+            margin-top: 20px;
         }
 
         h1 {
-            font-size: 2.8rem;
-            letter-spacing: -3px;
+            font-size: 2.5rem;
+            letter-spacing: -2px;
             color: #fff;
-            margin-bottom: 0;
+            margin: 0 0 30px 0;
             text-transform: lowercase;
+            opacity: 0.9;
         }
 
-        /* Destaque NaNNo */
-        .main-release {
-            margin-top: 30px;
+        /* --- SEÇÃO PRINCIPAL (OXIDANT) --- */
+        .cover-container {
+            position: relative;
+            margin: 0 auto;
+            max-width: 350px; /* Capa principal um pouco maior */
         }
 
-        .nanno-cover {
+        .ep-cover {
             width: 100%;
-            max-width: 380px;
-            border: 2px solid var(--deep-red);
-            filter: saturate(1.2) contrast(1.1);
-            box-shadow: 0 0 20px rgba(139, 0, 0, 0.4);
+            border: 1px solid var(--deep-red);
+            filter: contrast(1.1) sepia(0.2);
+            box-shadow: 0 0 25px rgba(139, 0, 0, 0.3);
+            display: block;
         }
 
-        .status-badge {
-            margin: 20px 0;
-            font-size: 1.2rem;
-            color: var(--bright-red);
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 0.6; }
-            50% { opacity: 1; }
-            100% { opacity: 0.6; }
-        }
-
-        /* Botões */
-        .btn-spotify {
-            display: inline-block;
+        .ep-title {
+            font-size: 3rem;
             color: #fff;
-            padding: 14px 35px;
+            margin: 20px 0 5px 0;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-shadow: 2px 2px 0px var(--deep-red);
+            animation: flicker 4s infinite;
+        }
+
+        @keyframes flicker {
+            0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; text-shadow: 2px 2px 0px var(--deep-red); }
+            20%, 24%, 55% { opacity: 0.5; text-shadow: -2px -2px 0px var(--bright-red); }
+        }
+
+        /* Countdown */
+        #countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .time-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(139, 0, 0, 0.1);
+            padding: 10px;
+            border: 1px solid var(--deep-red);
+            min-width: 60px;
+        }
+
+        .number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .label {
+            font-size: 0.6rem;
+            color: var(--bright-red);
+            margin-top: 5px;
+            letter-spacing: 1px;
+        }
+
+        .release-msg {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .btn-presave {
+            display: inline-block;
+            background: transparent;
+            color: var(--bright-red);
+            padding: 12px 30px;
             text-decoration: none;
             font-weight: bold;
-            border-radius: 50px;
-            margin-top: 10px;
+            border: 1px solid var(--bright-red);
             transition: 0.3s;
-            font-size: 0.95rem;
             text-transform: uppercase;
+            font-size: 0.9rem;
         }
 
-        .btn-red {
-            background: var(--bright-red);
-            box-shadow: 0 4px 15px rgba(209, 0, 0, 0.3);
+        .btn-presave:hover {
+            background: var(--deep-red);
+            color: #fff;
+            box-shadow: 0 0 15px var(--deep-red);
         }
 
-        .btn-red:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(209, 0, 0, 0.5);
+        /* Estado "JÁ LANÇOU" */
+        .hidden { display: none !important; }
+        .out-now-text {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--bright-red);
+            font-weight: bold;
+            animation: pulse 1s infinite alternate;
+            margin: 20px 0;
         }
 
-        .btn-green {
-            background: var(--spotify-green);
-            color: #000;
-        }
-
-        .btn-green:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(29, 185, 84, 0.4);
-        }
-
-        /* Seção Secundária */
+        /* --- SEÇÃO SECUNDÁRIA (NaNNo) --- */
         .secondary-release {
             margin-top: 60px;
             padding-top: 30px;
             border-top: 1px solid #222;
+            text-align: center;
         }
 
-        .secondary-release h2 {
+        .secondary-release h3 {
             font-size: 0.8rem;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -120,23 +160,46 @@
             margin-bottom: 20px;
         }
 
-        .stars-cover {
-            width: 140px;
-            border-radius: 2px;
+        .prev-cover {
+            width: 140px; /* Capa menor */
+            border: 1px solid #333;
+            filter: grayscale(0.6);
+            transition: filter 0.3s ease;
             margin-bottom: 10px;
-            filter: grayscale(0.3);
+        }
+
+        .prev-cover:hover {
+            filter: grayscale(0);
+            border-color: var(--deep-red);
+        }
+
+        .prev-title {
+            font-size: 1rem;
+            color: #fff;
+            margin: 5px 0 15px 0;
+            letter-spacing: 1px;
+        }
+
+        .btn-small {
+            font-size: 0.75rem;
+            padding: 8px 20px;
+            border: 1px solid #444;
+            color: #888;
+            text-decoration: none;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .btn-small:hover {
+            border-color: #fff;
+            color: #fff;
+            background: #111;
         }
 
         footer {
-            margin-top: 60px;
+            margin-top: 50px;
             font-size: 0.7rem;
             color: #444;
-        }
-
-        .email {
-            color: var(--bright-red);
-            text-decoration: none;
-            font-weight: bold;
         }
     </style>
 </head>
@@ -148,31 +211,86 @@
         </header>
 
         <section class="main-release">
-            <img src="https://i.postimg.cc/HsFR7fQG/2c17ad83698275061e18177d72373ce8.jpg" alt="NaNNo Cover" class="nanno-cover">
-            <h3 style="color:#fff; font-size: 1.8rem; margin-top: 15px;">NaNNo</h3>
+            <div class="cover-container">
+                <img src="https://cdn.discordapp.com/attachments/1263357446341005363/1462187970168750303/avenue_cover_ff9f9bc6dc1551a6c275ed6e63b04feetplv-tqklr3o1h5-resize_480_480.jpg?ex=696d482a&is=696bf6aa&hm=a3e37b81ad1be725d8a4f90463f519cdc3df314690cfb100d45f0aa162c4a648&" alt="Oxidant Cover" class="ep-cover">
+            </div>
+
+            <h2 class="ep-title">Oxidant</h2>
+            <p class="release-msg">18.01.26 // 00:00</p>
+
+            <div id="countdown">
+                <div class="time-box">
+                    <span id="hours" class="number">00</span>
+                    <span class="label">HOURS</span>
+                </div>
+                <div class="time-box">
+                    <span id="minutes" class="number">00</span>
+                    <span class="label">MINS</span>
+                </div>
+                <div class="time-box">
+                    <span id="seconds" class="number">00</span>
+                    <span class="label">SECS</span>
+                </div>
+            </div>
+
+            <div id="out-now-msg" class="out-now-text">AVAILABLE NOW</div>
             
-            <div id="status" class="status-badge">Out Now</div>
-            
-            <a href="https://sndo.ffm.to/4z404wg" target="_blank" class="btn-spotify btn-red">
-                Choose Your Favorite Preferred Music Service!
-            </a>
+            <a href="#" class="btn-presave" id="main-btn">Presave on Spotify</a>
         </section>
 
         <section class="secondary-release">
-            <h2>Previously Released</h2>
-            <img src="https://i.postimg.cc/wMZfLmRN/b5c0d73e86627ef0dba448b02e2971d8.jpg" alt="Stars From The Future Cover" class="stars-cover">
-            <p style="font-size: 0.85rem; color: #fff; margin: 5px 0 15px 0;">stars from the future</p>
+            <h3>Previously Released</h3>
             
-            <a href="https://open.spotify.com/track/6SJvnMVlm9IUjwggj3Gydc?si=-cfCJ0f0TvKGQtFRp4vZ-w" target="_blank" class="btn-spotify btn-green">
-                LISTEN ON SPOTIFY
+            <a href="https://sndo.ffm.to/4z404wg" target="_blank">
+                <img src="https://i.postimg.cc/HsFR7fQG/2c17ad83698275061e18177d72373ce8.jpg" alt="NaNNo Cover" class="prev-cover">
+            </a>
+            
+            <p class="prev-title">NaNNo</p>
+            
+            <a href="https://sndo.ffm.to/4z404wg" target="_blank" class="btn-small">
+                Listen
             </a>
         </section>
 
         <footer>
-            <p>contact: <a href="mailto:poviest.luiz@gmail.com" class="email">poviest.luiz@gmail.com</a></p>
-            <p style="margin-top: 20px; opacity: 0.5;">© 2026 necrosyct</p>
+            <p>© 2026 necrosyct</p>
         </footer>
     </div>
+
+    <script>
+        // Data alvo: 18/01/2026 00:00
+        const releaseDate = new Date("January 18, 2026 00:00:00").getTime();
+
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = releaseDate - now;
+
+            // Cálculo para mostrar Horas totais (mesmo que seja > 24h) para manter layout de 3 caixas
+            const hours = Math.floor(distance / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+
+            // Quando o tempo acabar
+            if (distance < 0) {
+                clearInterval(timer);
+                document.getElementById("countdown").classList.add("hidden");
+                document.querySelector(".release-msg").innerText = "THE WAIT IS OVER";
+                
+                const outNow = document.getElementById("out-now-msg");
+                outNow.style.display = "block";
+                
+                const btn = document.getElementById("main-btn");
+                btn.innerText = "LISTEN NOW";
+                btn.style.backgroundColor = "#d10000";
+                btn.style.color = "#fff";
+                btn.style.borderColor = "#d10000";
+            }
+        }, 1000);
+    </script>
 
 </body>
 </html>
