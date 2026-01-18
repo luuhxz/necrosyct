@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>necrosyct | Oxidant Countdown</title>
+    <title>necrosyct | Oxidant</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -13,6 +13,7 @@
             --muted-yellow: #e8e8b8;
             --text-dark: #546e7a;
             --text-light: #89a1ad;
+            --btn-gradient: linear-gradient(to right, #e8b8c8, #f5d5e0);
         }
 
         body {
@@ -47,68 +48,77 @@
             text-transform: lowercase;
         }
 
-        /* OXIDANT SECTION */
+        /* --- SEÇÃO PRINCIPAL: OXIDANT --- */
+        .main-release {
+            margin-bottom: 40px;
+        }
+
         .ep-cover {
             width: 100%;
             max-width: 350px;
-            border-radius: 4px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            border: 2px solid #fff;
         }
 
         .ep-title {
             font-family: 'Cinzel Decorative', cursive;
-            font-size: 3rem;
-            margin: 25px 0 5px 0;
+            font-size: 3.2rem;
+            margin: 25px 0 10px 0;
             text-transform: uppercase;
             letter-spacing: 3px;
             text-shadow: 1px 1px 0px var(--soft-pink), -1px -1px 0px var(--muted-yellow);
         }
 
-        #countdown {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 30px 0;
-        }
-
-        .time-box {
-            background: #fff;
-            padding: 15px;
-            border: 2px solid var(--soft-pink);
-            border-radius: 15px;
-            min-width: 70px;
-        }
-
-        .number {
-            font-size: 2.2rem;
+        .status-badge {
+            font-size: 0.9rem;
             font-weight: 600;
-        }
-
-        .label {
-            font-size: 0.65rem;
+            letter-spacing: 3px;
             color: var(--text-light);
+            margin-bottom: 25px;
             text-transform: uppercase;
         }
 
-        .release-msg {
-            font-size: 0.9rem;
-            color: var(--text-light);
-            margin-bottom: 20px;
-            letter-spacing: 2px;
+        .btn-main {
+            display: inline-block;
+            background: var(--btn-gradient);
+            color: white;
+            padding: 15px 45px;
+            text-decoration: none;
             font-weight: 600;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 15px rgba(232, 184, 200, 0.4);
+            transition: 0.3s ease;
+            border: 1px solid #fff;
         }
 
-        /* PREVIOUS RELEASES */
+        .btn-main:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(232, 184, 200, 0.6);
+            background: linear-gradient(to right, #f5d5e0, #e8b8c8);
+        }
+
+        /* --- SEÇÃO: PREVIOUSLY RELEASED --- */
         .secondary-release {
             margin-top: 50px;
             padding-top: 30px;
             border-top: 2px dashed var(--soft-pink);
         }
 
+        .section-title {
+            font-family: 'Cinzel Decorative', cursive;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
         .prev-grid {
             display: flex;
             justify-content: center;
-            gap: 30px;
+            gap: 40px;
             flex-wrap: wrap;
         }
 
@@ -116,20 +126,31 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 140px;
+            width: 150px;
         }
 
         .prev-cover {
             width: 100%;
             border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
             transition: transform 0.3s;
+            margin-bottom: 12px;
         }
 
-        .prev-cover:hover { transform: translateY(-3px); }
+        .prev-cover:hover {
+            transform: scale(1.05);
+        }
+
+        .prev-name {
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
 
         .btn-small {
             font-size: 0.7rem;
-            padding: 6px 15px;
+            padding: 6px 18px;
             border: 1px solid var(--soft-pink);
             background-color: #fff;
             color: var(--text-light);
@@ -137,6 +158,7 @@
             border-radius: 20px;
             font-weight: 600;
             text-transform: uppercase;
+            transition: 0.3s;
         }
 
         .btn-small:hover {
@@ -144,44 +166,48 @@
             color: #fff;
         }
 
+        /* --- FOOTER --- */
         footer {
-            margin-top: 50px;
+            margin-top: 60px;
+            padding-bottom: 20px;
             font-size: 0.75rem;
             color: var(--text-light);
         }
 
-        footer a { color: var(--text-dark); font-weight: 600; text-decoration: none; }
+        footer a {
+            color: var(--text-dark);
+            font-weight: 600;
+            text-decoration: none;
+        }
 
-        .hidden { display: none !important; }
-        .out-now-text { display: none; font-family: 'Cinzel Decorative', cursive; font-size: 1.8rem; color: var(--soft-pink); margin: 20px 0; }
+        footer a:hover {
+            color: var(--soft-pink);
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>necrosyct</h1>
+        <header>
+            <h1>necrosyct</h1>
+        </header>
 
         <section class="main-release">
             <img src="https://cdn.discordapp.com/attachments/1263357446341005363/1462187970168750303/avenue_cover_ff9f9bc6dc1551a6c275ed6e63b04feetplv-tqklr3o1h5-resize_480_480.jpg?ex=696d482a&is=696bf6aa&hm=a3e37b81ad1be725d8a4f90463f519cdc3df314690cfb100d45f0aa162c4a648&" alt="Oxidant" class="ep-cover">
             <h2 class="ep-title">Oxidant</h2>
-            <p class="release-msg">18.01.26 // 00:00</p>
-
-            <div id="countdown">
-                <div class="time-box"><span id="hours" class="number">00</span><div class="label">Hours</div></div>
-                <div class="time-box"><span id="minutes" class="number">00</span><div class="label">Mins</div></div>
-                <div class="time-box"><span id="seconds" class="number">00</span><div class="label">Secs</div></div>
-            </div>
-            <div id="out-now-msg" class="out-now-text">OUT NOW</div>
+            <div class="status-badge">New Single // Out Now</div>
+            
+            <a href="https://sndo.ffm.to/br6vbj" target="_blank" class="btn-main">Listen Now</a>
         </section>
 
         <section class="secondary-release">
-            <h3 style="font-size: 0.9rem; color: var(--text-light); margin-bottom: 20px; text-transform: uppercase;">Previously Released</h3>
+            <h3 class="section-title">Previously Released</h3>
             <div class="prev-grid">
                 <div class="prev-item">
                     <a href="https://sndo.ffm.to/4z404wg" target="_blank">
                         <img src="https://i.postimg.cc/HsFR7fQG/2c17ad83698275061e18177d72373ce8.jpg" alt="NaNNo" class="prev-cover">
                     </a>
-                    <p style="font-size: 0.8rem; margin: 10px 0;">NaNNo</p>
+                    <span class="prev-name">NaNNo</span>
                     <a href="https://sndo.ffm.to/4z404wg" target="_blank" class="btn-small">Listen</a>
                 </div>
 
@@ -189,7 +215,7 @@
                     <a href="https://sndo.ffm.to/yzy8p5e" target="_blank">
                         <img src="https://i.postimg.cc/wMZfLmRN/b5c0d73e86627ef0dba448b02e2971d8.jpg" alt="Stars From The Future" class="prev-cover">
                     </a>
-                    <p style="font-size: 0.8rem; margin: 10px 0;">stars from the future</p>
+                    <span class="prev-name">stars from the future</span>
                     <a href="https://sndo.ffm.to/yzy8p5e" target="_blank" class="btn-small">Listen</a>
                 </div>
             </div>
@@ -197,29 +223,9 @@
 
         <footer>
             <p>contact: <a href="mailto:poviest.luiz@gmail.com">poviest.luiz@gmail.com</a></p>
-            <p style="margin-top: 10px;">© 2026 necrosyct</p>
+            <p style="margin-top: 15px; opacity: 0.7;">© 2026 necrosyct</p>
         </footer>
     </div>
 
-    <script>
-        const releaseDate = new Date("January 18, 2026 00:00:00").getTime();
-        const timer = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = releaseDate - now;
-            const hours = Math.floor(distance / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
-            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
-            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
-
-            if (distance < 0) {
-                clearInterval(timer);
-                document.getElementById("countdown").classList.add("hidden");
-                document.getElementById("out-now-msg").style.display = "block";
-            }
-        }, 1000);
-    </script>
 </body>
 </html>
