@@ -3,229 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>necrosyct | Oxidant</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <title>SEEN THIS ANGEL?</title>
     <style>
-        :root {
-            --sky-blue: #a8c8e8;
-            --cloud-cream: #f8f8f4;
-            --soft-pink: #e8b8c8;
-            --muted-yellow: #e8e8b8;
-            --text-dark: #546e7a;
-            --text-light: #89a1ad;
-            --btn-gradient: linear-gradient(to right, #e8b8c8, #f5d5e0);
-        }
-
-        body {
-            background: linear-gradient(135deg, var(--sky-blue) 0%, #c4e0f5 100%);
-            color: var(--text-dark);
-            font-family: 'Montserrat', sans-serif;
+        body, html {
             margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000;
             display: flex;
             flex-direction: column;
+            justify-content: center;
             align-items: center;
-            padding: 20px;
-            min-height: 100vh;
+            font-family: 'Courier New', Courier, monospace;
         }
 
-        .container {
-            max-width: 550px;
-            width: 100%;
+        /* Título em destaque */
+        .title-overlay {
+            position: fixed;
+            top: 10%;
+            z-index: 2;
+            color: #fff;
+            font-size: 2rem;
+            letter-spacing: 8px;
             text-align: center;
-            background-color: var(--cloud-cream);
-            border: 3px solid #fff;
-            border-radius: 25px;
-            padding: 40px 25px;
-            box-shadow: 0 10px 30px rgba(168, 200, 232, 0.6);
-            margin-top: 20px;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+            pointer-events: none;
+            text-transform: uppercase;
         }
 
-        h1 {
-            font-family: 'Cinzel Decorative', cursive;
-            font-size: 2.8rem;
-            color: var(--text-dark);
-            margin: 0 0 30px 0;
-            text-transform: lowercase;
-        }
-
-        /* --- SEÇÃO PRINCIPAL: OXIDANT --- */
-        .main-release {
-            margin-bottom: 40px;
-        }
-
-        .ep-cover {
+        /* Container do Vídeo */
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 350px;
-            border-radius: 8px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-            border: 2px solid #fff;
+            height: 100%;
+            z-index: 0;
         }
 
-        .ep-title {
-            font-family: 'Cinzel Decorative', cursive;
-            font-size: 3.2rem;
-            margin: 25px 0 10px 0;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 1px 1px 0px var(--soft-pink), -1px -1px 0px var(--muted-yellow);
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
-        .status-badge {
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 3px;
-            color: var(--text-light);
-            margin-bottom: 25px;
-            text-transform: uppercase;
-        }
-
-        .btn-main {
-            display: inline-block;
-            background: var(--btn-gradient);
-            color: white;
-            padding: 15px 45px;
-            text-decoration: none;
-            font-weight: 600;
-            border-radius: 50px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            box-shadow: 0 4px 15px rgba(232, 184, 200, 0.4);
-            transition: 0.3s ease;
-            border: 1px solid #fff;
-        }
-
-        .btn-main:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(232, 184, 200, 0.6);
-            background: linear-gradient(to right, #f5d5e0, #e8b8c8);
-        }
-
-        /* --- SEÇÃO: PREVIOUSLY RELEASED --- */
-        .secondary-release {
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 2px dashed var(--soft-pink);
-        }
-
-        .section-title {
-            font-family: 'Cinzel Decorative', cursive;
-            font-size: 0.9rem;
-            color: var(--text-light);
-            margin-bottom: 30px;
-            text-transform: uppercase;
-        }
-
-        .prev-grid {
+        /* Botão de Som */
+        #mute-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #fff;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 4px;
+            width: 60px;
+            height: 40px;
             display: flex;
             justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-
-        .prev-item {
-            display: flex;
-            flex-direction: column;
             align-items: center;
-            width: 150px;
-        }
-
-        .prev-cover {
-            width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-            transition: transform 0.3s;
-            margin-bottom: 12px;
-        }
-
-        .prev-cover:hover {
-            transform: scale(1.05);
-        }
-
-        .prev-name {
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 10px;
-            color: var(--text-dark);
-        }
-
-        .btn-small {
             font-size: 0.7rem;
-            padding: 6px 18px;
-            border: 1px solid var(--soft-pink);
-            background-color: #fff;
-            color: var(--text-light);
-            text-decoration: none;
-            border-radius: 20px;
-            font-weight: 600;
-            text-transform: uppercase;
             transition: 0.3s;
+            z-index: 10;
+            letter-spacing: 1px;
         }
 
-        .btn-small:hover {
-            background: var(--soft-pink);
-            color: #fff;
+        #mute-btn:hover {
+            border-color: #8b0000;
+            color: #8b0000;
         }
 
-        /* --- FOOTER --- */
-        footer {
-            margin-top: 60px;
-            padding-bottom: 20px;
-            font-size: 0.75rem;
-            color: var(--text-light);
-        }
-
-        footer a {
-            color: var(--text-dark);
-            font-weight: 600;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            color: var(--soft-pink);
+        /* Efeito de granulação/noise sutil sobre o vídeo */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            pointer-events: none;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <header>
-            <h1>necrosyct</h1>
-        </header>
+    <h1 class="title-overlay">SEEN THIS ANGEL?</h1>
 
-        <section class="main-release">
-            <img src="https://cdn.discordapp.com/attachments/1263357446341005363/1462187970168750303/avenue_cover_ff9f9bc6dc1551a6c275ed6e63b04feetplv-tqklr3o1h5-resize_480_480.jpg?ex=696d482a&is=696bf6aa&hm=a3e37b81ad1be725d8a4f90463f519cdc3df314690cfb100d45f0aa162c4a648&" alt="Oxidant" class="ep-cover">
-            <h2 class="ep-title">Oxidant</h2>
-            <div class="status-badge">New Single // Out Now</div>
-            
-            <a href="https://sndo.ffm.to/br6vbj" target="_blank" class="btn-main">Listen Now</a>
-        </section>
+    <div class="noise-overlay"></div>
 
-        <section class="secondary-release">
-            <h3 class="section-title">Previously Released</h3>
-            <div class="prev-grid">
-                <div class="prev-item">
-                    <a href="https://sndo.ffm.to/4z404wg" target="_blank">
-                        <img src="https://i.postimg.cc/HsFR7fQG/2c17ad83698275061e18177d72373ce8.jpg" alt="NaNNo" class="prev-cover">
-                    </a>
-                    <span class="prev-name">NaNNo</span>
-                    <a href="https://sndo.ffm.to/4z404wg" target="_blank" class="btn-small">Listen</a>
-                </div>
-
-                <div class="prev-item">
-                    <a href="https://sndo.ffm.to/yzy8p5e" target="_blank">
-                        <img src="https://i.postimg.cc/wMZfLmRN/b5c0d73e86627ef0dba448b02e2971d8.jpg" alt="Stars From The Future" class="prev-cover">
-                    </a>
-                    <span class="prev-name">stars from the future</span>
-                    <a href="https://sndo.ffm.to/yzy8p5e" target="_blank" class="btn-small">Listen</a>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            <p>contact: <a href="mailto:poviest.luiz@gmail.com">poviest.luiz@gmail.com</a></p>
-            <p style="margin-top: 15px; opacity: 0.7;">© 2026 necrosyct</p>
-        </footer>
+    <div class="video-container">
+        <video id="bg-video" autoplay loop muted playsinline>
+            <source src="https://media.discordapp.net/attachments/1263357446341005363/1472988554161422366/2026-02-16-041550000.mp4?ex=699492fe&is=6993417e&hm=7d201833f596b619358f8e15176fbc55d1532da5e36066d1479cc31ad7f4ed9b&" type="video/mp4">
+        </video>
     </div>
+
+    <button id="mute-btn">SOUND</button>
+
+    <script>
+        const video = document.getElementById('bg-video');
+        const muteBtn = document.getElementById('mute-btn');
+
+        muteBtn.addEventListener('click', () => {
+            if (video.muted) {
+                video.muted = false;
+                muteBtn.innerHTML = "MUTE";
+            } else {
+                video.muted = true;
+                muteBtn.innerHTML = "SOUND";
+            }
+        });
+    </script>
 
 </body>
 </html>
