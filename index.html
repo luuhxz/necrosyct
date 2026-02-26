@@ -3,185 +3,195 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SEEN THIS ANGEL?</title>
+    <title>flourished angels around - necrosyct</title>
     <style>
+        :root {
+            /* Paleta: Preto anjo e cinzas escuros */
+            --bg-black: #050505;
+            --text-silver: #c0c0c0;
+            --angel-dust: rgba(255, 255, 255, 0.03);
+            --border-dark: #1a1a1a;
+        }
+
         body, html {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
-            overflow: hidden;
-            background-color: #000;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            background-color: var(--bg-black);
+            color: var(--text-silver);
             font-family: 'Courier New', Courier, monospace;
+            overflow: hidden; /* Mantém a imagem de fundo fixa */
         }
 
-        /* Container do Vídeo */
-        .video-container {
+        /* Imagem de Fundo em tela cheia */
+        .background-image {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: 0;
+            background-image: url('https://cdn.discordapp.com/attachments/1263357446341005363/1476706755806236723/87c29ecd552ed10ba1c6aada70c84c6e.jpg?ex=69a219d6&is=69a0c856&hm=77e8c95727e7cbfe774ff6357645081a0c85fcc57685d1447e14676203b8a662&');
+            background-size: cover;
+            background-position: center;
+            filter: grayscale(80%) contrast(110%) brightness(50%); /* Tom de anjo mais para o preto */
+            z-index: -1;
         }
 
-        video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Overlay de Conteúdo */
-        .content-overlay {
-            position: relative;
-            z-index: 2;
-            text-align: center;
-            color: #fff;
-            pointer-events: none;
-        }
-
-        h1 {
-            font-size: 2rem;
-            letter-spacing: 8px;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-
-        .album-title {
-            font-size: 1.2rem;
-            letter-spacing: 3px;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-
-        /* Cronômetro */
-        .countdown {
-            font-size: 2.5rem;
-            font-weight: bold;
-            letter-spacing: 5px;
-            color: #fff;
-            text-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
-        }
-
-        /* Rodapé */
-        footer {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 2;
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 0.7rem;
-            text-align: center;
-            width: 100%;
-            letter-spacing: 1px;
-        }
-
-        /* Botão de Som */
-        #mute-btn {
-            position: fixed;
-            bottom: 60px;
-            right: 30px;
-            background: rgba(0, 0, 0, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #fff;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 2px;
-            width: 70px;
-            font-size: 0.65rem;
-            transition: 0.3s;
-            z-index: 10;
-            letter-spacing: 1px;
-            pointer-events: auto;
-        }
-
-        #mute-btn:hover {
-            border-color: #8b0000;
-            color: #8b0000;
-        }
-
+        /* Overlay para escurecer a imagem e focar no texto */
         .noise-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.2);
-            z-index: 1;
-            pointer-events: none;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 0;
+        }
+
+        /* Container Principal (layout de grid) */
+        .main-container {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Esquerda vazia, Direita com conteúdo */
+            height: 100vh;
+            width: 100%;
+        }
+
+        /* Seção da Direita (Painel de Informações) */
+        .info-panel {
+            grid-column: 2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(5,5,5,0.8) 20%, rgba(5,5,5,1) 100%);
+            border-left: 1px solid var(--border-dark);
+            backdrop-filter: blur(5px);
+        }
+
+        h1 {
+            font-size: 1rem;
+            letter-spacing: 5px;
+            color: #fff;
+            text-transform: lowercase;
+            margin-bottom: 40px;
+        }
+
+        /* Capa do Álbum */
+        .album-cover {
+            width: 100%;
+            max-width: 300px;
+            aspect-ratio: 1 / 1;
+            background-image: url('https://image_0.png'); /* Usando a imagem enviada como exemplo de capa */
+            background-size: cover;
+            border: 1px solid #333;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.05);
+            margin-bottom: 25px;
+        }
+
+        .album-title {
+            font-size: 1.4rem;
+            color: #fff;
+            letter-spacing: 2px;
+            text-align: center;
+            margin-bottom: 5px;
+        }
+
+        .artist-name {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 30px;
+        }
+
+        /* Botão para Escutar */
+        .btn-listen {
+            display: inline-block;
+            background-color: transparent;
+            border: 1px solid var(--text-silver);
+            color: var(--text-silver);
+            padding: 15px 40px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            transition: 0.4s;
+            border-radius: 2px;
+        }
+
+        .btn-listen:hover {
+            background-color: var(--text-silver);
+            color: #000;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+
+        /* Rodapé */
+        footer {
+            position: absolute;
+            bottom: 20px;
+            font-size: 0.65rem;
+            color: #444;
+            letter-spacing: 1px;
+        }
+
+        /* MEDIA QUERY PARA CELULAR (Apenas em pé) */
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr; /* Ocupa a tela inteira */
+                overflow-y: auto; /* Permite rolar se o conteúdo for grande */
+            }
+
+            .info-panel {
+                grid-column: 1;
+                background: rgba(5, 5, 5, 0.9);
+                padding: 60px 20px;
+                border-left: none;
+                justify-content: flex-start;
+                min-height: 100vh;
+            }
+
+            h1 {
+                margin-top: 0;
+                margin-bottom: 30px;
+            }
+
+            .album-cover {
+                max-width: 80%;
+            }
+
+            footer {
+                position: relative;
+                bottom: auto;
+                margin-top: 50px;
+            }
         }
     </style>
 </head>
 <body>
 
+    <div class="background-image"></div>
     <div class="noise-overlay"></div>
 
-    <div class="video-container">
-        <video id="bg-video" autoplay loop muted playsinline>
-            <source src="https://media.discordapp.net/attachments/1263357446341005363/1474147041297830052/2026-02-18-170137522.mp4?ex=6998c9ea&is=6997786a&hm=32289c3c8adc01af632a65a1550d19b4030dc97ae5fbaaab7c4e1ac7a02e5136&" type="video/mp4">
-        </video>
+    <div class="main-container">
+        <div class="info-panel">
+            <h1>necrosyct</h1>
+
+            <div class="album-cover"></div>
+
+            <div class="album-title">flourished angels around</div>
+            <div class="artist-name">necrosyct</div>
+
+            <a href="https://sndo.ffm.to/pke35rp" target="_blank" class="btn-listen">
+                LISTEN NOW
+            </a>
+
+            <footer>
+                2026 - DIGITAL CORPSES
+            </footer>
+        </div>
     </div>
-
-    <div class="content-overlay">
-        <h1>SEEN THIS ANGEL?</h1>
-        <div class="album-title">flourished angels around</div>
-        <div id="timer" class="countdown">00:00:00:00</div>
-    </div>
-
-    <button id="mute-btn">SOUND</button>
-
-    <footer>
-        2026 - necrosyct | digitalcorpsess@gmail.com
-    </footer>
-
-    <script>
-        // Data alvo: 20 de Fevereiro de 2026 às 00:00
-        const targetDate = new Date("Feb 20, 2026 00:00:00").getTime();
-
-        const countdownFunction = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = targetDate - now;
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            // Formatação com zeros à esquerda
-            const d = days < 10 ? "0" + days : days;
-            const h = hours < 10 ? "0" + hours : hours;
-            const m = minutes < 10 ? "0" + minutes : minutes;
-            const s = seconds < 10 ? "0" + seconds : seconds;
-
-            document.getElementById("timer").innerHTML = d + ":" + h + ":" + m + ":" + s;
-
-            if (distance < 0) {
-                clearInterval(countdownFunction);
-                document.getElementById("timer").innerHTML = "OUT NOW";
-            }
-        }, 1000);
-
-        // Controle de Áudio
-        const video = document.getElementById('bg-video');
-        const muteBtn = document.getElementById('mute-btn');
-
-        muteBtn.addEventListener('click', () => {
-            if (video.muted) {
-                video.muted = false;
-                muteBtn.innerHTML = "MUTE";
-            } else {
-                video.muted = true;
-                muteBtn.innerHTML = "SOUND";
-            }
-        });
-    </script>
 
 </body>
 </html>
