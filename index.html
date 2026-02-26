@@ -3,195 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>flourished angels around - necrosyct</title>
+    <title>flourished angels around</title>
+    <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/1263357446341005363/1476712808929427676/1772145601407.png?ex=69a21f79&is=69a0cdf9&hm=d24c6cf1a34bedace8d595e777b3e765482dd877adeefede93f36c5aa80f3192&">
+    
     <style>
-        :root {
-            /* Paleta: Preto anjo e cinzas escuros */
-            --bg-black: #050505;
-            --text-silver: #c0c0c0;
-            --angel-dust: rgba(255, 255, 255, 0.03);
-            --border-dark: #1a1a1a;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body, html {
-            margin: 0;
-            padding: 0;
             width: 100%;
             height: 100%;
-            background-color: var(--bg-black);
-            color: var(--text-silver);
+            background-color: #000;
             font-family: 'Courier New', Courier, monospace;
-            overflow: hidden; /* Mantém a imagem de fundo fixa */
+            overflow-x: hidden;
+            color: #fff;
         }
 
-        /* Imagem de Fundo em tela cheia */
-        .background-image {
+        /* Imagem de Fundo (Anjo Preto) */
+        .bg-wrap {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://cdn.discordapp.com/attachments/1263357446341005363/1476706755806236723/87c29ecd552ed10ba1c6aada70c84c6e.jpg?ex=69a219d6&is=69a0c856&hm=77e8c95727e7cbfe774ff6357645081a0c85fcc57685d1447e14676203b8a662&');
-            background-size: cover;
-            background-position: center;
-            filter: grayscale(80%) contrast(110%) brightness(50%); /* Tom de anjo mais para o preto */
             z-index: -1;
+            background: url('https://cdn.discordapp.com/attachments/1263357446341005363/1476706755806236723/87c29ecd552ed10ba1c6aada70c84c6e.jpg?ex=69a219d6&is=69a0c856&hm=77e8c95727e7cbfe774ff6357645081a0c85fcc57685d1447e14676203b8a662&') no-repeat center center;
+            background-size: cover;
+            filter: brightness(0.4) grayscale(0.5);
         }
 
-        /* Overlay para escurecer a imagem e focar no texto */
-        .noise-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: 0;
-        }
-
-        /* Container Principal (layout de grid) */
-        .main-container {
-            position: relative;
-            z-index: 2;
-            display: grid;
-            grid-template-columns: 1fr 1fr; /* Esquerda vazia, Direita com conteúdo */
+        /* Container Principal */
+        .container {
+            display: flex;
             height: 100vh;
             width: 100%;
+            justify-content: flex-end; /* Alinha tudo para a direita */
+            align-items: center;
+            padding: 5%;
         }
 
-        /* Seção da Direita (Painel de Informações) */
-        .info-panel {
-            grid-column: 2;
+        /* Bloco de conteúdo da direita */
+        .content-right {
+            width: 100%;
+            max-width: 400px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            padding: 40px;
-            background: linear-gradient(90deg, rgba(0,0,0,0) 0%, rgba(5,5,5,0.8) 20%, rgba(5,5,5,1) 100%);
-            border-left: 1px solid var(--border-dark);
-            backdrop-filter: blur(5px);
-        }
-
-        h1 {
-            font-size: 1rem;
-            letter-spacing: 5px;
-            color: #fff;
-            text-transform: lowercase;
-            margin-bottom: 40px;
-        }
-
-        /* Capa do Álbum */
-        .album-cover {
-            width: 100%;
-            max-width: 300px;
-            aspect-ratio: 1 / 1;
-            background-image: url('https://image_0.png'); /* Usando a imagem enviada como exemplo de capa */
-            background-size: cover;
-            border: 1px solid #333;
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.05);
-            margin-bottom: 25px;
-        }
-
-        .album-title {
-            font-size: 1.4rem;
-            color: #fff;
-            letter-spacing: 2px;
             text-align: center;
-            margin-bottom: 5px;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(8px);
+            padding: 40px 20px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
         }
 
-        .artist-name {
-            font-size: 0.9rem;
-            color: #777;
+        /* Foto do Álbum em cima da foto de fundo */
+        .album-art {
+            width: 100%;
+            max-width: 320px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            margin-bottom: 25px;
+            border: 1px solid #222;
+        }
+
+        .title {
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            font-weight: bold;
+            text-transform: lowercase;
+        }
+
+        .subtitle {
+            font-size: 0.8rem;
+            color: #888;
             margin-bottom: 30px;
+            letter-spacing: 2px;
         }
 
-        /* Botão para Escutar */
+        /* Botão Listen Now */
         .btn-listen {
             display: inline-block;
-            background-color: transparent;
-            border: 1px solid var(--text-silver);
-            color: var(--text-silver);
+            background: #fff;
+            color: #000;
             padding: 15px 40px;
             text-decoration: none;
+            font-weight: bold;
             font-size: 0.9rem;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
+            transition: 0.3s ease;
             text-transform: uppercase;
-            transition: 0.4s;
-            border-radius: 2px;
         }
 
         .btn-listen:hover {
-            background-color: var(--text-silver);
-            color: #000;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            background: #8b0000; /* Vermelho sangue ao passar o mouse */
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 0, 0, 0.4);
         }
 
-        /* Rodapé */
+        /* Footer discreto */
         footer {
-            position: absolute;
+            position: fixed;
             bottom: 20px;
-            font-size: 0.65rem;
-            color: #444;
+            right: 40px;
+            font-size: 0.6rem;
+            color: rgba(255, 255, 255, 0.3);
             letter-spacing: 1px;
         }
 
-        /* MEDIA QUERY PARA CELULAR (Apenas em pé) */
+        /* Mobile Fix - Apenas em pé */
         @media (max-width: 768px) {
-            .main-container {
-                grid-template-columns: 1fr; /* Ocupa a tela inteira */
-                overflow-y: auto; /* Permite rolar se o conteúdo for grande */
+            .container {
+                justify-content: center;
+                padding: 20px;
             }
-
-            .info-panel {
-                grid-column: 1;
-                background: rgba(5, 5, 5, 0.9);
-                padding: 60px 20px;
-                border-left: none;
-                justify-content: flex-start;
-                min-height: 100vh;
-            }
-
-            h1 {
-                margin-top: 0;
-                margin-bottom: 30px;
-            }
-
-            .album-cover {
-                max-width: 80%;
-            }
-
-            footer {
-                position: relative;
-                bottom: auto;
-                margin-top: 50px;
+            .content-right {
+                max-width: 90%;
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="background-image"></div>
-    <div class="noise-overlay"></div>
+    <div class="bg-wrap"></div>
 
-    <div class="main-container">
-        <div class="info-panel">
-            <h1>necrosyct</h1>
-
-            <div class="album-cover"></div>
-
-            <div class="album-title">flourished angels around</div>
-            <div class="artist-name">necrosyct</div>
+    <div class="container">
+        <div class="content-right">
+            <img src="https://cdn.discordapp.com/attachments/1263357446341005363/1476709403427209267/Screenshot_2026-02-26-19-31-03-405_com.spotify.music-edit.jpg?ex=69a21c4d&is=69a0cacd&hm=9cf947cf25f55fd42960e33bcc2ca9c44c209b327b27eed364313866966a85ed&" alt="flourished angels around cover" class="album-art">
+            
+            <div class="title">flourished angels around</div>
+            <div class="subtitle">necrosyct</div>
 
             <a href="https://sndo.ffm.to/pke35rp" target="_blank" class="btn-listen">
                 LISTEN NOW
             </a>
-
-            <footer>
-                2026 - DIGITAL CORPSES
-            </footer>
         </div>
     </div>
+
+    <footer>
+        2026 - necrosyct | digitalcorpsess@gmail.com
+    </footer>
 
 </body>
 </html>
